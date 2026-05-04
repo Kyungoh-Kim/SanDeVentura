@@ -1,0 +1,6 @@
+[submodule "mobile"]
+	path = mobile
+	url = https://github.com/Kyungoh-Kim/SanDeVentura-mobile.git
+[submodule "web"]
+	path = web
+	url = https://github.com/Kyungoh-Kim/SanDeVentura-web.git
