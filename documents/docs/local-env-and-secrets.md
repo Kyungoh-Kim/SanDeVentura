@@ -59,12 +59,12 @@ Supabase Edge Function local serving should read secrets from an ignored env
 file:
 
 ```powershell
-npx supabase functions serve upload-session --no-verify-jwt --env-file supabase/.env.local
+npx supabase functions serve --no-verify-jwt --env-file supabase/.env.local
 ```
 
-## Current Sprint 2 Local Values
+## Current Local Values
 
-- `UPLOAD_SESSION_ENDPOINT` is connection configuration, not a secret.
+- `SUPABASE_FUNCTIONS_URL` is connection configuration, not a secret.
 - `SUPABASE_URL` is connection configuration, not a secret.
 - `SPRINT2_DEV_USER_ID` is a temporary dev identifier, not a credential.
 - `SUPABASE_SERVICE_ROLE_KEY` is a secret and must only live in ignored local
