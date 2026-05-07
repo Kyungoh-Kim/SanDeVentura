@@ -393,12 +393,27 @@ Manual:
 - `flutter build apk --debug` passed on 2026-05-07.
 - `npm run typecheck` passed on 2026-05-07.
 - `npm run build` passed on 2026-05-07.
-- `npm run test:functions` could not run because `deno` is not installed or
-  not available on PATH.
-- `npm run supabase:reset` could not run because `supabase` is not installed
-  or not available on PATH.
+- Initial `npm run test:functions` could not run because `deno` was not
+  installed or not available on PATH.
+- Initial `npm run supabase:reset` could not run because `supabase` was not
+  installed or not available on PATH.
 - `flutter test --concurrency=1` currently hangs before producing test output
   in this local shell session, so the added DAO/service/widget tests still need
   to be executed once the local Flutter test runner issue is cleared.
 - Independent subagent validation was requested, but the validation subagent
   could not start because the current Codex usage limit was reached.
+
+Updated on 2026-05-07 after connecting local Supabase:
+
+- `npx supabase start` passed and started local Studio/API/DB/Functions.
+- `npx supabase db reset` passed with migrations `0001` through `0004`.
+- `npm run test:db` passed with 10 pgTAP assertions.
+- `npm run test:functions` passed with 10 Deno assertions after switching the
+  scripts to `npx deno` and allowing the Edge Function env reads.
+- Local `upload-session` smoke passed:
+  - first POST returned `status: ingested`, `acceptedPointCount: 1`, and
+    `rejectedPointCount: 1`;
+  - duplicate POST with the same `idempotencyKey` returned
+    `status: duplicate`;
+  - DB verification showed one accepted row, one rejected row, and the rejected
+    original latitude `91` stored in `rejected_track_points`.
