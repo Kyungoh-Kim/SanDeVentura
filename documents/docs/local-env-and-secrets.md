@@ -35,10 +35,18 @@ Flutter can consume the JSON example after copying it:
 flutter run --dart-define-from-file=.env.local.json
 ```
 
-For Android emulator local Supabase, keep `adb reverse` active:
+For Android Emulator local Supabase, use the emulator host alias:
+
+```powershell
+flutter run --dart-define=SUPABASE_FUNCTIONS_URL=http://10.0.2.2:54321/functions/v1
+```
+
+For a physical Android device, or when explicitly testing localhost through
+ADB, keep `adb reverse` active and use `127.0.0.1`:
 
 ```powershell
 adb reverse tcp:54321 tcp:54321
+flutter run --dart-define=SUPABASE_FUNCTIONS_URL=http://127.0.0.1:54321/functions/v1
 ```
 
 ## Secret Files
@@ -59,12 +67,12 @@ Supabase Edge Function local serving should read secrets from an ignored env
 file:
 
 ```powershell
-npx supabase functions serve upload-session --no-verify-jwt --env-file supabase/.env.local
+npx supabase functions serve --no-verify-jwt --env-file supabase/.env.local
 ```
 
-## Current Sprint 2 Local Values
+## Current Local Values
 
-- `UPLOAD_SESSION_ENDPOINT` is connection configuration, not a secret.
+- `SUPABASE_FUNCTIONS_URL` is connection configuration, not a secret.
 - `SUPABASE_URL` is connection configuration, not a secret.
 - `SPRINT2_DEV_USER_ID` is a temporary dev identifier, not a credential.
 - `SUPABASE_SERVICE_ROLE_KEY` is a secret and must only live in ignored local
