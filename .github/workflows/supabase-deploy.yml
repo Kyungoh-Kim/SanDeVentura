@@ -16,14 +16,14 @@ jobs:
           submodules: 'recursive'
           fetch-depth: 0
           persist-credentials: true
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GH_PAT || github.token }}
 
       - name: Checkout web repository (explicit)
         uses: actions/checkout@v4
         with:
           repository: 'Kyungoh-Kim/SanDeVentura-web'
           path: web
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GH_PAT || github.token }}
           fetch-depth: 0
 
       - name: Setup Node.js
