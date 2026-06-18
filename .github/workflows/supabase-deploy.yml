@@ -62,4 +62,4 @@ jobs:
         working-directory: web/supabase
         run: |
           # Deploy all functions for the linked project
-          supabase functions deploy --all
+          supabase functions deploy
