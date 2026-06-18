@@ -18,6 +18,14 @@ jobs:
           persist-credentials: true
           token: ${{ secrets.GH_PAT }}
 
+      - name: Checkout web repository (explicit)
+        uses: actions/checkout@v4
+        with:
+          repository: 'Kyungoh-Kim/SanDeVentura-web'
+          path: web
+          token: ${{ secrets.GH_PAT }}
+          fetch-depth: 0
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
