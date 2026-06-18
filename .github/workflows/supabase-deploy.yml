@@ -53,9 +53,11 @@ jobs:
         working-directory: web/supabase
         run: |
           # Apply migrations (ensure migrations are present in web/supabase/migrations)
-          supabase db push --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+          # Use --linked to push to the linked project created above
+          supabase db push --linked --yes
 
       - name: Deploy Edge Functions
         working-directory: web/supabase
         run: |
-          supabase functions deploy --all --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+          # Deploy all functions for the linked project
+          supabase functions deploy --all
