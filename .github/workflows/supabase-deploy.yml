@@ -46,15 +46,16 @@ jobs:
         run: supabase login --token "$SUPABASE_ACCESS_TOKEN"
 
       - name: Link project
+        working-directory: web/supabase
         run: supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
 
       - name: Apply DB migrations
         working-directory: web/supabase
         run: |
           # Apply migrations (ensure migrations are present in web/supabase/migrations)
-          supabase db push
+          supabase db push --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
 
       - name: Deploy Edge Functions
         working-directory: web/supabase
         run: |
-          supabase functions deploy --all
+          supabase functions deploy --all --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
