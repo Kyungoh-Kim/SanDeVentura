@@ -34,11 +34,17 @@ jobs:
       - name: Add Deno to PATH
         run: echo "${HOME}/.deno/bin" >> $GITHUB_PATH
 
+      - name: Install GitHub CLI (gh)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh || true
+
       - name: Verify installed tools
         run: |
           supabase --version || true
           node --version
           deno --version || true
+          gh --version || true
 
       - name: Reminder: configure Copilot environment secrets
         run: |
