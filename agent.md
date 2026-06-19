@@ -15,3 +15,12 @@ compatibility in mind unless a task explicitly narrows the scope.
   a later iOS build without a documented reason.
 - Document any platform limitation directly in the relevant plan or code review
   note before relying on it.
+
+## Agent commit policy
+
+- Do not create commits or change the repository state unless explicitly asked
+  to do so by a human and you have received clear confirmation to proceed.
+  Always present intended changes, file diffs, and a proposed commit message and
+  wait for an explicit approval before running git commands that alter the
+  workspace (add, commit, push, or update submodule pointers).
+
